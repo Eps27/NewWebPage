@@ -16,14 +16,14 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      animation: rotate 20s linear infinite, pulse 6s ease-in-out infinite;
+      animation: rotate 8s linear infinite, pulse 5s ease-in-out infinite;
     }
 
     .spiral span {
       position: absolute;
       font-size: 30px;
       color: white;
-      animation: rgbShift 5s linear infinite;
+      animation: rgbShift 4s linear infinite;
     }
 
     @keyframes rotate {
@@ -33,7 +33,7 @@
 
     @keyframes pulse {
       0%, 100% { transform: translate(-50%, -50%) scale(1); }
-      50%      { transform: translate(-50%, -50%) scale(1.1); }
+      50%      { transform: translate(-50%, -50%) scale(1.15); }
     }
 
     @keyframes rgbShift {
@@ -43,14 +43,6 @@
       60%  { color: lime; }
       80%  { color: cyan; }
       100% { color: violet; }
-    }
-
-    /* Foreground chaotic 67s */
-    .foreground span {
-      position: absolute;
-      font-size: 50px;
-      opacity: 0.7;
-      animation: moveAround linear infinite;
     }
 
     .next-button {
@@ -70,7 +62,6 @@
 </head>
 <body>
   <div class="spiral" id="spiral"></div>
-  <div class="foreground" id="foreground"></div>
   <button class="next-button" onclick="location.href='page2.html'">Next 67</button>
 
   <script>
@@ -86,36 +77,6 @@
       span.style.left = x;
       span.style.top = y;
       spiral.appendChild(span);
-    }
-
-    // Foreground drifting 67s
-    const foreground = document.getElementById('foreground');
-    const styleSheet = document.styleSheets[0];
-    const colors = ['red', 'purple', 'orange', 'lime', 'yellow'];
-    for (let i = 0; i < 100; i++) {
-      const span = document.createElement('span');
-      span.textContent = '67';
-      span.style.top = Math.random() * 100 + '%';
-      span.style.left = Math.random() * 100 + '%';
-      span.style.color = colors[Math.floor(Math.random() * colors.length)];
-
-      const duration = 10 + Math.random() * 5; // slower drift
-      const delay = Math.random() * 3;
-      span.style.animationDuration = duration + 's';
-      span.style.animationDelay = delay + 's';
-
-      const dx = (Math.random() - 0.5) * 200;
-      const dy = (Math.random() - 0.5) * 200;
-      span.style.animationName = 'move' + i;
-
-      styleSheet.insertRule(`
-        @keyframes move${i} {
-          from { transform: translate(0,0) rotate(0deg); }
-          to { transform: translate(${dx}px, ${dy}px) rotate(360deg); }
-        }
-      `, styleSheet.cssRules.length);
-
-      foreground.appendChild(span);
     }
   </script>
 </body>
