@@ -10,39 +10,24 @@
       overflow: hidden;
     }
 
-    /* Spiral illusion container */
+    /* Spiral container spins as a whole */
     .spiral {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      animation: rotate 8s linear infinite, pulse 5s ease-in-out infinite;
+      animation: spin 6s linear infinite; /* faster spin */
     }
 
     .spiral span {
       position: absolute;
       font-size: 30px;
       color: white;
-      animation: rgbShift 4s linear infinite;
     }
 
-    @keyframes rotate {
+    @keyframes spin {
       from { transform: translate(-50%, -50%) rotate(0deg); }
       to   { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); }
-      50%      { transform: translate(-50%, -50%) scale(1.15); }
-    }
-
-    @keyframes rgbShift {
-      0%   { color: red; }
-      20%  { color: orange; }
-      40%  { color: yellow; }
-      60%  { color: lime; }
-      80%  { color: cyan; }
-      100% { color: violet; }
     }
 
     .next-button {
