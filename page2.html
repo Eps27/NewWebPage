@@ -11,6 +11,8 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      position: relative;
+      overflow: hidden;
     }
 
     .big67 {
@@ -18,7 +20,7 @@
       font-weight: bold;
       animation: rgbFlash 2s infinite;
       position: relative;
-      /* Echo trail using multiple shadows */
+      cursor: pointer; /* clickable */
       text-shadow:
         20px 0 rgba(255,0,0,0.3),
         40px 0 rgba(255,165,0,0.2),
@@ -32,6 +34,31 @@
         0 -40px rgba(255,255,0,0.2);
     }
 
+    /* Back button */
+    .back-button {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 30px;
+      font-size: 24px;
+      font-weight: bold;
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Spazzing clones */
+    .spazz67 {
+      position: absolute;
+      font-size: 1500px;
+      font-weight: bold;
+      animation: rgbFlash 1s infinite;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
     @keyframes rgbFlash {
       0%   { color: red; }
       25%  { color: orange; }
@@ -42,6 +69,53 @@
   </style>
 </head>
 <body>
-  <div class="big67">67</div>
+  <!-- Main 67 -->
+  <div class="big67" id="main67">67</div>
+
+  <!-- Back button -->
+  <button class="back-button" onclick="history.back()">Go Back</button>
+
+  <script>
+    // Function to spawn bouncing clone
+    function spawnSpazz67() {
+      const spazz = document.createElement('div');
+      spazz.textContent = '67';
+      spazz.className = 'spazz67';
+
+      // Random starting position
+      let x = Math.random() * (window.innerWidth - 300);
+      let y = Math.random() * (window.innerHeight - 300);
+      let dx = (Math.random() < 0.5 ? -1 : 1) * 8; // speed X
+      let dy = (Math.random() < 0.5 ? -1 : 1) * 8; // speed Y
+
+      spazz.style.left = x + 'px';
+      spazz.style.top = y + 'px';
+      document.body.appendChild(spazz);
+
+      // Animate bouncing
+      function move() {
+        x += dx;
+        y += dy;
+
+        // Bounce off edges
+        if (x <= 0 || x >= window.innerWidth - 300) dx *= -1;
+        if (y <= 0 || y >= window.innerHeight - 300) dy *= -1;
+
+        spazz.style.left = x + 'px';
+        spazz.style.top = y + 'px';
+      }
+
+      const interval = setInterval(move, 30);
+
+      // Remove after 5 seconds
+      setTimeout(() => {
+        clearInterval(interval);
+        spazz.remove();
+      }, 5000);
+    }
+
+    // Click main 67 to spawn bouncing clone
+    document.getElementById('main67').addEventListener('click', spawnSpazz67);
+  </script>
 </body>
 </html>
