@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>67 virus</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .big67 {
+      font-size: 1000px;
+      font-weight: bold;
+      animation: rgbFlash 2s infinite;
+      position: relative;
+      /* Echo trail using multiple shadows */
+      text-shadow:
+        20px 0 rgba(255,0,0,0.3),
+        40px 0 rgba(255,165,0,0.2),
+        60px 0 rgba(0,255,0,0.15),
+        -20px 0 rgba(0,255,255,0.3),
+        -40px 0 rgba(255,0,255,0.2),
+        -60px 0 rgba(255,255,0,0.15),
+        0 20px rgba(255,0,0,0.25),
+        0 40px rgba(0,255,0,0.2),
+        0 -20px rgba(0,0,255,0.25),
+        0 -40px rgba(255,255,0,0.2);
+    }
+
+    @keyframes rgbFlash {
+      0%   { color: red; }
+      25%  { color: orange; }
+      50%  { color: lime; }
+      75%  { color: cyan; }
+      100% { color: magenta; }
+    }
+  </style>
+</head>
+<body>
+  <div class="big67">67</div>
+</body>
+</html>
