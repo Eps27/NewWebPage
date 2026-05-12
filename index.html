@@ -10,19 +10,19 @@
       overflow: hidden;
     }
 
-    /* Spiral container spins as a whole */
+    /* Spiral container spins clockwise */
     .spiral {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      animation: spin 6s linear infinite; /* faster spin */
+      animation: spin 6s linear infinite; /* clockwise spin */
     }
 
     .spiral span {
       position: absolute;
       font-size: 30px;
-      color: white;
+      color: lime; /* pick one color for clarity */
     }
 
     @keyframes spin {
