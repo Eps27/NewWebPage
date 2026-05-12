@@ -21,13 +21,19 @@
 
     .spiral span {
       position: absolute;
-      font-size: 30px;
-      color: lime; /* pick one color for clarity */
+      font-size: var(--size);
+      color: hsl(var(--hue), 100%, 50%);
+      animation: hueShift 6s linear infinite;
     }
 
     @keyframes spin {
       from { transform: translate(-50%, -50%) rotate(0deg); }
       to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes hueShift {
+      0%   { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
     }
 
     .next-button {
@@ -55,10 +61,20 @@
     for (let i = 0; i < 300; i++) {
       const span = document.createElement('span');
       span.textContent = '67';
+
       const angle = i * 0.2;
       const radius = i * 3;
       const x = Math.cos(angle) * radius + 'px';
       const y = Math.sin(angle) * radius + 'px';
+
+      // size grows with radius
+      const size = 8 + radius * 0.05; 
+      span.style.setProperty('--size', size + 'px');
+
+      // hue shifts gradually across spiral
+      const hue = (i * 2) % 360; 
+      span.style.setProperty('--hue', hue);
+
       span.style.left = x;
       span.style.top = y;
       spiral.appendChild(span);
