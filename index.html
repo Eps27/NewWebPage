@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>67 virus</title>
+  <title>67 Spiral Illusion</title>
   <style>
     body {
       margin: 0;
@@ -12,27 +12,33 @@
       color: white;
     }
 
-    /* Spiral container */
+    /* Spiral illusion */
     .spiral span {
       position: absolute;
       font-size: 35px;
-      animation: spiralMove 10s linear infinite;
-      animation-delay: var(--delay);
-      background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, violet);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: white;
+      animation: spin 20s linear infinite, rgbShift 5s linear infinite;
     }
 
-    @keyframes spiralMove {
-      0%   { transform: rotate(0deg) translateX(0); }
-      100% { transform: rotate(720deg) translateX(200px); }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes rgbShift {
+      0%   { color: red; }
+      20%  { color: orange; }
+      40%  { color: yellow; }
+      60%  { color: lime; }
+      80%  { color: cyan; }
+      100% { color: violet; }
     }
 
     /* Foreground chaotic 67s */
     .foreground span {
       position: absolute;
       font-size: 50px;
-      opacity: 0.9;
+      opacity: 0.8;
       animation: moveAround linear infinite;
     }
 
@@ -53,7 +59,7 @@
   </style>
 </head>
 <body>
-  <!-- Spiral background -->
+  <!-- Spiral illusion -->
   <div class="spiral" id="spiral"></div>
 
   <!-- Foreground animated 67s -->
@@ -63,41 +69,41 @@
   <button class="next-button" onclick="location.href='page2.html'">Next 67</button>
 
   <script>
-    // Generate spiral of 67s with RGB effect
+    // Generate spiral illusion from center
     const spiral = document.getElementById('spiral');
-    for (let i = 0; i < 150; i++) {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    for (let i = 0; i < 300; i++) {
       const span = document.createElement('span');
       span.textContent = '67';
       const angle = i * 0.2;
-      const radius = i * 4;
-      const x = Math.cos(angle) * radius + 'px';
-      const y = Math.sin(angle) * radius + 'px';
-      span.style.left = x;
-      span.style.top = y;
-      span.style.setProperty('--delay', (i * 0.05) + 's');
+      const radius = i * 3;
+      const x = centerX + Math.cos(angle) * radius;
+      const y = centerY + Math.sin(angle) * radius;
+      span.style.left = x + 'px';
+      span.style.top = y + 'px';
       spiral.appendChild(span);
     }
 
-    // Generate chaotic foreground 67s (slower)
+    // Foreground chaotic 67s (slower drift)
     const foreground = document.getElementById('foreground');
     const styleSheet = document.styleSheets[0];
     const colors = ['red', 'purple', 'orange', 'lime', 'yellow'];
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 120; i++) {
       const span = document.createElement('span');
       span.textContent = '67';
       span.style.top = Math.random() * 100 + '%';
       span.style.left = Math.random() * 100 + '%';
       span.style.color = colors[Math.floor(Math.random() * colors.length)];
 
-      // Slower animation speed
-      const duration = 4 + Math.random() * 3; // 4–7s
-      const delay = Math.random() * 2;        // stagger start
+      const duration = 8 + Math.random() * 4; // 8–12s
+      const delay = Math.random() * 2;
       span.style.animationDuration = duration + 's';
       span.style.animationDelay = delay + 's';
 
-      // Randomize direction
-      const dx = (Math.random() - 0.5) * 600; // -300 to +300 px
-      const dy = (Math.random() - 0.5) * 600;
+      const dx = (Math.random() - 0.5) * 300;
+      const dy = (Math.random() - 0.5) * 300;
       span.style.animationName = 'move' + i;
 
       styleSheet.insertRule(`
