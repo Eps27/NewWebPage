@@ -16,22 +16,16 @@
     }
 
     .big67 {
-      font-size: 20px; /* smaller main 67 */
+      font-size: 80px; /* smaller main 67 */
       font-weight: bold;
       animation: rgbFlash 2s infinite;
       position: relative;
       cursor: pointer;
       text-shadow:
-        20px 0 rgba(255,0,0,0.3),
-        40px 0 rgba(255,165,0,0.2),
-        60px 0 rgba(0,255,0,0.15),
-        -20px 0 rgba(0,255,255,0.3),
-        -40px 0 rgba(255,0,255,0.2),
-        -60px 0 rgba(255,255,0,0.15),
-        0 20px rgba(255,0,0,0.25),
-        0 40px rgba(0,255,0,0.2),
-        0 -20px rgba(0,0,255,0.25),
-        0 -40px rgba(255,255,0,0.2);
+        10px 0 rgba(255,0,0,0.3),
+        20px 0 rgba(255,165,0,0.2),
+        -10px 0 rgba(0,255,255,0.3),
+        -20px 0 rgba(255,0,255,0.2);
     }
 
     .back-button {
@@ -39,8 +33,8 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      padding: 15px 30px;
-      font-size: 24px;
+      padding: 10px 20px;
+      font-size: 18px;
       font-weight: bold;
       background: red;
       color: white;
@@ -50,9 +44,9 @@
 
     .spazz67 {
       position: absolute;
-      font-size: 20px;
+      font-size: 60px; /* clone size */
       font-weight: bold;
-      animation: rgbFlash 1s infinite;
+      animation: rgbFlash 0.5s infinite; /* faster flashing */
       opacity: 1;
       pointer-events: none;
     }
@@ -85,9 +79,9 @@
       let x = rect.left + rect.width / 2;
       let y = rect.top + rect.height / 2;
 
-      // Random velocity
-      let dx = (Math.random() < 0.5 ? -1 : 1) * 25;
-      let dy = (Math.random() < 0.5 ? -1 : 1) * 25;
+      // Much faster random velocity
+      let dx = (Math.random() < 0.5 ? -1 : 1) * 50;
+      let dy = (Math.random() < 0.5 ? -1 : 1) * 50;
 
       spazz.style.left = x + 'px';
       spazz.style.top = y + 'px';
@@ -97,14 +91,14 @@
         y += dy;
 
         // Bounce off edges
-        if (x <= 0 || x >= window.innerWidth - 200) dx *= -1;
-        if (y <= 0 || y >= window.innerHeight - 200) dy *= -1;
+        if (x <= 0 || x >= window.innerWidth - 100) dx *= -1;
+        if (y <= 0 || y >= window.innerHeight - 100) dy *= -1;
 
         spazz.style.left = x + 'px';
         spazz.style.top = y + 'px';
       }
 
-      const interval = setInterval(move, 20);
+      const interval = setInterval(move, 10); // faster updates
 
       // Remove after 5 seconds
       setTimeout(() => {
