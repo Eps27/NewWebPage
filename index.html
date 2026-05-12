@@ -23,7 +23,7 @@
       position: absolute;
       font-size: var(--size);
       color: hsl(var(--hue), 100%, 50%);
-      animation: hueShift 6s linear infinite;
+      animation: hueShift 8s linear infinite;
     }
 
     @keyframes spin {
@@ -58,12 +58,22 @@
   <script>
     // Build spiral illusion centered
     const spiral = document.getElementById('spiral');
+    let radius = 0;
+
     for (let i = 0; i < 300; i++) {
       const span = document.createElement('span');
       span.textContent = '67';
 
+      // angle progression
       const angle = i * 0.2;
-      const radius = i * 3;
+
+      // gradually increase radius spacing (compounded after 180)
+      if (i < 180) {
+        radius += 2; // tighter spacing near center
+      } else {
+        radius += 2 + (i - 180) * 0.05; // spacing grows faster outward
+      }
+
       const x = Math.cos(angle) * radius + 'px';
       const y = Math.sin(angle) * radius + 'px';
 
