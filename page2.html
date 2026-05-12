@@ -16,7 +16,7 @@
     }
 
     .big67 {
-      font-size: 80px; /* smaller main 67 */
+      font-size: 100px; /* smaller main 67 */
       font-weight: bold;
       animation: rgbFlash 2s infinite;
       position: relative;
@@ -44,7 +44,7 @@
 
     .spazz67 {
       position: absolute;
-      font-size: 60px; /* clone size */
+      font-size: 90px; /* clone size */
       font-weight: bold;
       animation: rgbFlash 0.5s infinite; /* faster flashing */
       opacity: 1;
@@ -80,8 +80,8 @@
       let y = rect.top + rect.height / 2;
 
       // Much faster random velocity
-      let dx = (Math.random() < 0.5 ? -1 : 1) * 50;
-      let dy = (Math.random() < 0.5 ? -1 : 1) * 50;
+      let dx = (Math.random() < 0.5 ? -1 : 1) * 30;
+      let dy = (Math.random() < 0.5 ? -1 : 1) * 30;
 
       spazz.style.left = x + 'px';
       spazz.style.top = y + 'px';
